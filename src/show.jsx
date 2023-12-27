@@ -14,7 +14,7 @@ const Show = () => {
     // refMesh.current?
     // refMesh.current?.quaternion.set(0, camera.quaternion.y, 0, camera.quaternion.w)
     // refMesh.current?.rotation.set(0, camera.rotation.y, 0)
-    if(camera.position.z.toFixed(1) === data.position.z.toFixed(1)){
+    if(camera.position?.z.toFixed(1) === data.position?.z.toFixed(1)){
       console.log("fixed")
     }
     // console.log(camera.position.z.toFixed(1))
