@@ -29,7 +29,7 @@ const Show = () => {
       {
         data.map((dataPos,index) => {
           return (
-            <mesh key={index} position={[dataPos.position.x, -0.5, dataPos.position.z-2]} quaternion={[0, dataPos.quaternion.y, 0,dataPos.quaternion.w]}>
+            <mesh key={index} position={[dataPos.position.x, -0.5, dataPos.position.z-1.3]} quaternion={[0, dataPos.quaternion.y, 0,dataPos.quaternion.w]}>
               <boxGeometry args={[0.5, 0.2, 1]} />
               {/* <meshBasicMaterial color={"#ff0000"}/> */}
               <meshNormalMaterial />
