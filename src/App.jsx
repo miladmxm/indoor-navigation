@@ -66,8 +66,8 @@ function App() {
           {/* //* In AR mode, it interferes with displacements */}
           {/* {!isSessionStart && <CameraController />} */}
           {/* <OrbitControls autoRotate={false} /> */}
-          <ArTest savePosRef={savePosRef} downloadRef={downloadRef}/>
-          {/* <Show/> */}
+          {/* <ArTest savePosRef={savePosRef} downloadRef={downloadRef}/> */}
+          <Show/>
         </XR>
       </Canvas>
     </>
