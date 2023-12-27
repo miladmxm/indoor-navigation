@@ -1,5 +1,5 @@
 import { useFrame, useThree } from "@react-three/fiber"
-import { useEffect, useRef} from "react"
+import { useCallback, useEffect, useRef} from "react"
 import { useImmer } from "use-immer"
 import { downloadFile } from "./utils/download"
 import data from '../my-file.json'
@@ -7,6 +7,8 @@ import data from '../my-file.json'
 const ArTest = ({savePosRef,downloadRef}) => {
   
   const [cameraData, setCameraData] = useImmer([])
+  const [cameraPos,setCameraPos]= useImmer({})
+  
   const { camera } = useThree()
   const refMesh = useRef(null)
   useFrame(async () => {
@@ -18,13 +20,16 @@ const ArTest = ({savePosRef,downloadRef}) => {
     // console.log(refMesh.current.quaternion)
     refMesh.current?.position.setZ(camera.position.z)
     refMesh.current?.position.setX(camera.position.x)
+
+    setCameraPos({position:{z:camera.position.z,x:camera.position.x},quaternion:{y:camera.quaternion.y,w:camera.quaternion.w}})
+
     // refMesh.current?..setX(camera.position.x)
 
     // cameraCopyRef.current.quaternion.set(0, camera.quaternion.y, 0, camera.quaternion.w)
   })
-  savePosRef.current.onclick=()=>{
-    setCameraData(draft=>{draft.push({position:refMesh.current.position,quaternion:camera.quaternion})})
-  }
+  savePosRef.current.onclick=useCallback(()=>{
+    setCameraData(draft=>{draft.push(cameraPos)})
+  },[cameraPos])
   downloadRef.current.onclick=()=>{
     downloadFile(cameraData)
   }
